@@ -1,0 +1,32 @@
+Char[][] Minesweeper(char[][] MINES)
+	Loop i=0 to MINES.length
+		Loop ii=0 to MINES[i]
+			If MINES[i][ii] == "-"
+				MINES[i][ii] = MineCounter(MINES, i, ii)
+			Endif
+		Endloop
+	Endloop
+	Return MINES
+
+Int MineCounter(char[][] MINES, int ARRAYINDEX, int INDEX)
+	Int COUNT = 0
+	COUNT = CountRow(MINES, ARRAYINDEX, INDEX, COUNT)
+	If ARRAYINDEX != MINES.length
+		COUNT = CountRow(MINES, ARRAYINDEX + 1, INDEX, COUNT)
+	endif
+	If ARRAYINDEX != 0
+		COUNT = CountRow(MINES, ARRAYINDEX - 1, INDEX, COUNT)
+	Endif
+	Return COUNT
+	
+Int CountRow(char[][] MINES, int ARRAYINDEX, int INDEX, int COUNT)
+	If index != 0 AND MINES[ARRAYINDEX][INDEX - 1] == '#'
+		COUNT++
+	endif
+	If MINES[ARRAYINDEX][INDEX] == '#'
+		COUNT++
+	endif
+	If index != MINES[ARRAYINDEX].length AND MINES[ARRAYINDEX][INDEX + 1] == '#'
+		COUNT++
+	endif
+Return COUNT
